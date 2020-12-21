@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+    h1{
+        text-align: center;
+        color: pink;
+    }
+
+</style>
+<head>
+  <title>Page Title</title>
+  <meta charset="UTF-8"/>
+</head>
+
+<body>
+<script>
+// create variable for user selection, convert to all caps, make empty atm (playerSelection)
+// declare empty variables for scores
+let playerChoice = ""
+let userScore = 0;
+let cpuScore = 0;
+let cpuChoice = "";
+
+
+
+function getUserChoice(){
+playerChoice = prompt("Rock Paper Scissors SHOOT!!")
+playerChoice = playerChoice.toUpperCase()
+console.log(playerChoice)
+return playerChoice;
+}
+
+// if input not "rock papper or scissors" return error and restart
+// compare input to desired values
+// continue if correct
+// restart if not
+
+
+//  //  //  //  //  //  //  //  //  //  //  //  //  /// //  / / // / 
+// create variable for cpu selection, make empty atm (computerSelection)
+
+// first function: goal -> randomly return either rock/paper/scissors
+function computerPlay(){
+// generate random number multiply by ten, store in variable "selector"
+let selector = Math.random()*10;
+console.log(selector)
+// if selector =< 3, return rock
+if(selector < 4){
+    cpuChoice = "Rock";
+    console.log(cpuChoice);
+    return cpuChoice;
+}
+// if selector >3 & <=7, return paper
+else if(selector >= 4 && selector < 7 ){
+    cpuChoice = "Paper";
+    console.log(cpuChoice);
+    return cpuChoice;
+}
+// if selector >7, return scissors
+else{cpuChoice = "Scissors";
+console.log(cpuChoice);
+return cpuChoice;
+}
+}
+
+
+//   //   //  //  //  /// // 
+
+
+//second function, compare two selections 
+// for each case return string
+//cases: 
+// 1: user, rock; cpu, paper; result: "you lose, paper beats rock"
+// 2: user, rock; cpu, scissors; result; "you win, rock beats scissors"
+// 3: user, rock; cpu, rock; result: "tie"
+// 4: user, paper; cpu, paper; result: "tie"
+// 5: user, paper; cpu. rock; result: "You win! Paper beats rock"
+// 6: user, paper; cpu, scissors: result: "you lose!, scissors beat paper"
+// 7: user, scissors; cpu, paper: result: "you win! scissors beat paper"
+// 8: user, scissors; cpu, scissors: result: "tie"
+// 9: user, scissors;pape cpu, rock: result: "you lose, rock beats scissors!"
+function singleGame(userOption, computerOption){
+// make nestd ifs:
+// if user selection is paper
+if (userOption === "PAPER"){
+    if(computerOption ==="Rock"){
+        userScore ++;
+        return "You win! Paper beats rock. The score is, user:" + userScore + " cpu:" + cpuScore  }
+    else if(computerOption === "Scissors"){
+        cpuScore ++;
+        return "You lose! Scissors beat paper. The score is, user:" + userScore + " cpu:" + cpuScore
+    }
+    else{return "Tie! The score is, user:" + userScore + " cpu:" + cpuScore    }
+}
+else if(userOption === "ROCK"){
+    if(computerOption === "Scissors"){
+        cpuScore ++;
+        return "You lose! Scissors beats rock The score is, user:" + userScore + " cpu:" + cpuScore
+    }
+    else if(computerOption === "Paper"){
+        userScore ++;
+        return "You win! Rock beat paper The score is, user:" + userScore + " cpu:" + cpuScore
+    }
+    else{return "Tie! The score is, user:" + userScore + " cpu:" + cpuScore
+    }
+}
+else if(userOption === "SCISSORS"){
+    if(computerOption === "Rock"){
+        cpuScore ++;
+        return "You lose! Rock beats scissors The score is, user:" + userScore + " cpu:" + cpuScore
+    }
+    else if(computerOption === "Paper"){
+        userScore ++;
+        return "You win! Scissors beat paper The score is, user:" + userScore + " cpu:" + cpuScore
+    }
+    else{return"Tie! The score is, user:" + userScore + " cpu:" + cpuScore }
+
+}
+else{return "ERROR, please enter rock paper or scissors"}  
+}
+
+//console.log(singleGame(getUserChoice(), computerPlay()))
+
+// finally, create game where you can play best of 11 (first to five)
+
+
+//function game()
+// call previous function five times
+// keep score
+
+// set for loop:
+// as long as neither score > 5 (use ||) play game
+do{
+    console.log(singleGame(getUserChoice(), computerPlay()))
+}
+while(userScore < 5 && cpuScore < 5)
+    
+alert("game over!")
+
+
+
+
+
+
+</script>
+</body>
+</html>
+
